@@ -1,18 +1,19 @@
-// import express from "express";
+import express from "express";
+import { verifyToken } from "../middlewares/verifyToken.js";
+import {
+  addPost,
+  deletePost,
+  getPost,
+  getPosts,
+  updatePost,
+} from "../controllers/post.controller.js";
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get("/test", (req, res) => {
-//   console.log("Router works");
-// });
-// router.post("/test", (req, res) => {
-//   console.log("Router works");
-// });
-// router.put("/test", (req, res) => {
-//   console.log("Router works");
-// });
-// router.delete("/test", (req, res) => {
-//   console.log("Router works");
-// });
+router.get("/", getPosts);
+router.get("/:id", getPost);
+router.post("/", verifyToken, addPost);
+router.put("/:id", verifyToken, updatePost);
+router.delete("/:id", verifyToken, deletePost);
 
-// export default router;
+export default router;
