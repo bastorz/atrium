@@ -1,6 +1,6 @@
-import express from "express";
+// import express from "express";
 
-const router = express.Router();
+// const router = express.Router();
 
 // router.get("/test", (req, res) => {
 //   console.log("Router works");
@@ -15,4 +15,4 @@ const router = express.Router();
 //   console.log("Router works");
 // });
 
-export default router;
+// export default router;

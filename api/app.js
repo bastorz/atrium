@@ -1,41 +1,30 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import postRoute from "./routes/post.route";
-import authRoute from "./routes/post.route";
-import testRoute from "./routes/post.route";
+import authRoute from "./routes/auth.route.js";
+import testRoute from "./routes/test.route.js";
+import userRoute from "./routes/user.route.js";
+import dotenv from "dotenv";
 
 const app = express();
 
+dotenv.config();
+
 app.use(express.json());
 app.use(cookieParser());
-app.use(cookieParser());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 
-app.use("api/posts", postRoute);
-app.use("api/auth", authRoute);
-app.use("api/test", testRoute);
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// app.use("api/posts", postRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/test", testRoute);
+app.use("/api/users", userRoute);
 
 app.listen(8000, () => {
   console.log("Server is running");
 });
-
-// app.use("/api/test", (req, res) => {
-//     res.send("It works");
-//   });
-
-//   app.use("/api/auth/register", (req, res) => {
-//     res.send("It works");
-//   });
-//   app.use("/api/auth/login", (req, res) => {
-//     res.send("It works");
-//   });
-//   app.use("/api/auth/logout", (req, res) => {
-//     res.send("It works");
-//   });
-//   app.use("/api/posts/", (req, res) => {
-//     res.send("It works");
-//   });
-//   app.use("/api/posts/", (req, res) => {
-//     res.send("It works");
-//   });
